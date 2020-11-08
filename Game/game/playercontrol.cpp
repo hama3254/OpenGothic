@@ -89,6 +89,11 @@ void PlayerControl::onKeyPressed(KeyCodec::Action a) {
         fk = ActLeft;
       if(a==Action::Right)
         fk = ActRight;
+	  // attacks with rotate keys
+	  if (a == Action::RotateL)
+		  fk = ActLeft;
+	  if (a == Action::RotateR)
+		  fk = ActRight;
       }
     if(fk>=0) {
       std::memset(actrl,0,sizeof(actrl));
