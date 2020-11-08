@@ -218,7 +218,25 @@ void InventoryMenu::processMove(KeyEvent& e) {
     else if(sel.sel+1<pg.size())
       sel.sel++;
     }
+	//use roate keys for inventory movement
+	 else if (key == KeyCodec::RotateL) {
+	  if (sel.sel%columsCount == 0 && page > 0) {
+		  page--;
+		  sel.sel += (columsCount - 1);
+	  }
+	  else if (sel.sel > 0)
+		  sel.sel--;
   }
+
+  else if (key == KeyCodec::RotateR) {
+	  if (((sel.sel + 1u) % columsCount == 0 || sel.sel + 1u == pg.size() || pg.size() == 0) && page + 1u < pCount) {
+		  page++;
+		  sel.sel -= sel.sel%columsCount;
+	  }
+	  else if (sel.sel + 1 < pg.size())
+		  sel.sel++;
+  }
+ }
 
 void InventoryMenu::processPickLock(KeyEvent& e) {
   auto&        script        = world()->script();
